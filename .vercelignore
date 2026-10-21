@@ -1,0 +1,7 @@
+# Գաղտնի տվյալները Vercel-ում լրացվում են Environment Variables բաժնում
+.env
+.env.local
+node_modules
+.next
+*.tar.gz
+tsconfig.tsbuildinfo

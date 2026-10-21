@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: light; }
+.dark { color-scheme: dark; }
+
+@layer base {
+  * { @apply border-stone-200 dark:border-steel-900; }
+  html { scroll-behavior: smooth; }
+  body {
+    @apply bg-paper font-sans text-ink antialiased dark:bg-steel-950 dark:text-stone-100;
+    overflow-x: hidden;
+  }
+  h1, h2, h3 { @apply font-bold tracking-tight; }
+  ::selection { @apply bg-blaze-500 text-ink; }
+  :focus-visible { @apply outline-2 outline-offset-2 outline-blaze-500; }
+}
+
+@layer components {
+  .shell { @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8; }
+  .eyebrow { @apply text-[11px] font-semibold uppercase tracking-[0.18em] text-steel-600 dark:text-blaze-400; }
+  .h-section { @apply mt-1 text-2xl text-ink sm:text-3xl dark:text-stone-50; }
+  .link-more { @apply inline-flex items-center gap-1 text-sm font-semibold text-steel-700 hover:text-steel-900 dark:text-blaze-400 dark:hover:text-blaze-300; }
+
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-semibold transition-colors disabled:opacity-50; }
+  .btn-primary { @apply btn bg-blaze-500 text-ink hover:bg-blaze-400; }
+  .btn-dark { @apply btn bg-steel-900 text-white hover:bg-steel-800 dark:bg-white dark:text-ink dark:hover:bg-stone-200; }
+  .btn-ghost { @apply btn border border-stone-300 text-ink hover:border-steel-600 hover:text-steel-700 dark:border-steel-800 dark:text-stone-100 dark:hover:border-blaze-500 dark:hover:text-blaze-300; }
+  .btn-whatsapp { @apply btn bg-[#1f8f4e] text-white hover:bg-[#187a41]; }
+
+  .card { @apply rounded-xl border border-stone-200 bg-white dark:border-steel-800 dark:bg-steel-900; }
+  .input { @apply w-full rounded-md border border-stone-300 bg-white px-3 py-2 text-sm text-ink placeholder:text-stone-400 focus:border-steel-600 focus:outline-none dark:border-steel-800 dark:bg-steel-950 dark:text-stone-100; }
+  .label { @apply mb-1 block text-xs font-semibold text-stone-600 dark:text-stone-400; }
+
+  .badge { @apply inline-flex items-center gap-1 rounded px-2 py-0.5 text-[11px] font-semibold; }
+  .badge-new { @apply badge bg-blaze-400 text-ink; }
+  .badge-sale { @apply badge bg-red-700 text-white; }
+  .badge-license { @apply badge bg-ink/85 text-blaze-300; }
+}

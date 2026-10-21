@@ -1,0 +1,51 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+}
+
+model Category {
+  id        String     @id @default(cuid())
+  name      String
+  slug      String     @unique
+  image     String?
+  sortOrder Int        @default(0)
+  parentId  String?
+  parent    Category?  @relation("SubCategories", fields: [parentId], references: [id], onDelete: Restrict)
+  children  Category[] @relation("SubCategories")
+  products  Product[]
+}
+
+model Product {
+  id              String   @id @default(cuid())
+  title           String
+  description     String
+  price           Float
+  oldPrice        Float?   // լրացված է միայն զեղչի դեպքում
+  isNew           Boolean  @default(false)
+  images          String   // JSON array of image URLs
+  inStock         Boolean  @default(true)
+  requiresLicense Boolean  @default(false)
+  specs           String?  // JSON object of key-value specs
+  categoryId      String
+  category        Category @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @default(now()) @updatedAt
+}
+
+model PromoBanner {
+  id        String   @id @default(cuid())
+  text      String
+  isActive  Boolean  @default(true)
+  updatedAt DateTime @updatedAt
+}
